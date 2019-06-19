@@ -1,21 +1,22 @@
 package com.shan.springbootshirotest.shiro;
 
-
-import com.shan.springbootshirotest.po.user;
+import com.shan.springbootshirotest.mapper.userMapper;
+import com.shan.springbootshirotest.pojo.user;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Component
 public class ShiroUserRealm extends AuthorizingRealm {
-
+    @Autowired
+    userMapper usermapper;
     /**
      * 授权
      * @param principals
@@ -50,18 +51,27 @@ public class ShiroUserRealm extends AuthorizingRealm {
         String userNameInput=(String)token.getPrincipal();
         String passwordInput=new String((char[])token.getCredentials());
         //查询用户信息
-        user user=new user(1,"shan","123",1);
+        List<user> userList=usermapper.selectByExample(null);
+        Iterator<user> iterator=userList.iterator();
+        user targetuser=null;
+        while(iterator.hasNext()){
+            user user=iterator.next();
+            if(user.getUsername().equals(userNameInput)){
+                targetuser=user;
+            }
+        }
+      /*  user targetuser=new user(1,"shan","123",1);*/
         //用户不存在
-        if(user==null){
+        if(targetuser==null){
             throw new UnknownAccountException("用户名或者密码错误！");
         }
         //密码错误
-        if(!passwordInput.equals(user.getUserpassword())){
+        if(!passwordInput.equals(targetuser.getUserpassword())){
             throw new IncorrectCredentialsException("用户名或者密码错误！");
         }
 
         System.out.println("用户登陆成功!");
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getUserpassword(), getName());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(targetuser, targetuser.getUserpassword(), getName());
         return info;
     }
 }

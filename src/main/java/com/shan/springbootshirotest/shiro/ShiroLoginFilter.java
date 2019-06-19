@@ -1,7 +1,8 @@
 package com.shan.springbootshirotest.shiro;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shan.springbootshirotest.po.user;
+
+import com.shan.springbootshirotest.pojo.user;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.web.servlet.AdviceFilter;
 
@@ -30,7 +31,7 @@ public class ShiroLoginFilter extends AdviceFilter {
                 return false;
             } else {//不是ajax进行重定向处理
                 System.out.println("登录拦截器");
-                httpServletResponse.sendRedirect("/AI_BD/");
+                httpServletResponse.sendRedirect("/SHIRO/");
                 return false;
             }
         }

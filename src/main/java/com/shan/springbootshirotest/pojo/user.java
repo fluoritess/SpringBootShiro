@@ -1,5 +1,4 @@
-package com.shan.springbootshirotest.po;
-
+package com.shan.springbootshirotest.pojo;
 
 public class user {
     private Integer id;
@@ -10,10 +9,14 @@ public class user {
 
     private Integer permissions;
 
-    public user(String username, String userpassword, Integer permissions) {
+    private String email;
+
+    public user(Integer id, String username, String userpassword, Integer permissions, String email) {
+        this.id = id;
         this.username = username;
         this.userpassword = userpassword;
         this.permissions = permissions;
+        this.email = email;
     }
 
     public user(Integer id, String username, String userpassword, Integer permissions) {
@@ -21,11 +24,6 @@ public class user {
         this.username = username;
         this.userpassword = userpassword;
         this.permissions = permissions;
-    }
-
-    public user(String username, String userpassword) {
-        this.username = username;
-        this.userpassword = userpassword;
     }
 
     public user() {
@@ -62,5 +60,13 @@ public class user {
 
     public void setPermissions(Integer permissions) {
         this.permissions = permissions;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 }

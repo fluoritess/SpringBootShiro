@@ -1,7 +1,8 @@
 package com.shan.springbootshirotest.util;
 
 
-import com.shan.springbootshirotest.po.user;
+
+import com.shan.springbootshirotest.pojo.user;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;

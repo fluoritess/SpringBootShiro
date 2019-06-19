@@ -23,8 +23,8 @@
        height: 100%;
      }
      body{
-       background: url("bg1.jpg") no-repeat;
-       background-size: 100%;
+  /*     background: url("bg1.jpg") no-repeat;
+       background-size: 100%;*/
      }
     </style>
   </head>
@@ -56,7 +56,6 @@
         <div class="col-sm-offset-2 col-sm-10">
           <button type="button" class="btn btn-default" id="button">Sign in</button>
             <button type="button" class="btn btn-default" ><a href="register.html">register</a></button>
-            <button type="button" class="btn btn-default" ><a href="home/index.jsp">home</a></button>
         </div>
       </div>
     </form>
@@ -94,7 +93,7 @@
     // }
       $.ajax({
           type: "POST",
-          url: "/login.action",
+          url: "/SHIRO/login.action",
           contentType: "application/json; charset=utf-8",
           data: json,
           async: false,
@@ -103,15 +102,15 @@
               var name=msg.data.name
               if(name == '' || name == null || name == undefined){
                   alert("密码或账号错误")
-                  window.location.href="http://localhost:8080/Login.html"
+                  window.location.href="http://localhost:8080/SHIRO/Login.html"
               }
               else if(name=='admin'){
                   alert("管理员"+name+"登录成功")
-                  window.location.href="http://localhost:8080/Login.html"
+                  window.location.href="http://localhost:8080/SHIRO/Login.html"
               }
               else {
                   alert("用户"+name+"登录成功")
-                  window.location.href="http://localhost:8080/Login.html"
+                  window.location.href="http://localhost:8080/SHIRO/Login.html"
               }
              /* if (message > 0) {
                   alert("请求已提交！我们会尽快与您取得联系");
