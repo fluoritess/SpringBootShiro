@@ -25,7 +25,7 @@ public class ShiroUserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         System.out.println("授权...");
 
-        UserInf user = (UserInf) principals.getPrimaryPrincipal();
+        user user = (user) principals.getPrimaryPrincipal();
 
 
         //用户权限列表

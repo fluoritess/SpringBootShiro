@@ -18,12 +18,7 @@ import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * @author tyh
- * @Package cn.itcast.ssm.config
- * @Description:
- * @date 18-7-20 下午3:01
- */
+
 @Configuration
 public class ShiroConfig {
 
